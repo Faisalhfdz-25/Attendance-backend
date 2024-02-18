@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AttendanceController;
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\PasswordController;
 use Illuminate\Http\Request;
@@ -34,6 +35,6 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::post('attendance', 'Api\AttendanceController@store');
-    Route::get('attendance/history', 'Api\AttendanceController@history');
+    Route::post('attendance', [AttendanceController::class,'store']);
+    Route::get('attendance/history', [AttendanceController::class, 'history']);
 });
